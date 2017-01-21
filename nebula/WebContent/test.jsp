@@ -8,8 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% Test test = new Test();
-test.say();
-%>
+<form action="test" method="post">
+	user:<input type="text" name="user" />
+	password:<input type="text" name="password" />
+	<input type="submit" value="submit" />
+</form>
 </body>
 </html>
