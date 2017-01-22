@@ -25,7 +25,7 @@
   	<url-pattern>/test</url-pattern>
   </servlet-mapping>
   
-  <context-param>
+<!--   <context-param>
   	<param-name>user</param-name>
   	<param-value>zhangsan</param-value>
   </context-param>
@@ -33,7 +33,7 @@
   <context-param>
   	<param-name>password</param-name>
   	<param-value>123456</param-value>
-  </context-param>
+  </context-param> -->
   
   
   <welcome-file-list>

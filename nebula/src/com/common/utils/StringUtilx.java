@@ -7,6 +7,11 @@ package com.common.utils;
  */
 public class StringUtilx {
 
+	/**
+	 * 将字符串的第一个字母转为大写
+	 * @param str
+	 * @return
+	 */
 	public static String upperFirstWord(String str){
 		if(str == null || str.trim() ==""){
 			return str;
@@ -15,6 +20,17 @@ public class StringUtilx {
 		return firstWord+str.substring(1);
 		
 	}
+	
+	public static Boolean isBlank(String str){
+		if(str==null||str.trim()==""){
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
+	
+	
 	
 	public static void main(String[] args){
 		System.out.println(StringUtilx.upperFirstWord("handler"));
