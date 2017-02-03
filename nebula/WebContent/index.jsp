@@ -6,8 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>index</title>
+<link rel="stylesheet" href="${path}/index.css" type="text/css" />
 </head>
 <body>
+<div class="main">
+	<div class="content ent">
+		
+	</div>
+</div>
+
 <a href="${path}/entAccount/register.do" >注册</a>
 <a href="${path}/entAccount/login.do" >登录</a>
 </body>

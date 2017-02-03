@@ -1,0 +1,18 @@
+.main {
+	width:800px;
+	height:1000px;
+	border:1px;
+	margin:2em auto;
+}
+.content {
+	width:230px;
+	height:300px;
+	margin:20px 20px;
+	border:1px solid green; 
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: #666 0px 0px 10px;
+	-moz-box-shadow: #666 0px 0px 10px;
+	box-shadow: #666 0px 0px 10px;
+}
