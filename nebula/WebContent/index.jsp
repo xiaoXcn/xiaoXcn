@@ -17,5 +17,6 @@
 
 <a href="${path}/entAccount/register.do" >注册</a>
 <a href="${path}/entAccount/login.do" >登录</a>
+<script type="text/javascript" src="test.js"></script>
 </body>
 </html>

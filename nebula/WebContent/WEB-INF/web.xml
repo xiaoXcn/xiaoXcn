@@ -1,47 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>nebula</display-name>
-  <servlet>
-  	<servlet-name>handlerServlet</servlet-name>
-  	<servlet-class>com.nebula.servlet.HandlerServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>handlerServlet</servlet-name>
-  	<url-pattern>*.do</url-pattern>
-  </servlet-mapping>
-  
-  
-  <servlet>
-  	<servlet-name>testServlet</servlet-name>
-  	<servlet-class>com.nebula.test.TestServlet</servlet-class>
-  	<init-param>
-  		<param-name>name</param-name>
-  		<param-value>zhangsan</param-value>
-  	</init-param>
-  	<load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>testServlet</servlet-name>
-  	<url-pattern>/test</url-pattern>
-  </servlet-mapping>
-  
-<!--   <context-param>
-  	<param-name>user</param-name>
-  	<param-value>zhangsan</param-value>
-  </context-param>
-  
-  <context-param>
-  	<param-name>password</param-name>
-  	<param-value>123456</param-value>
-  </context-param> -->
-  
-  
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>nebula</display-name>
+	<servlet>
+		<servlet-name>handlerServlet</servlet-name>
+		<servlet-class>com.nebula.servlet.HandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>handlerServlet</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>testServlet</servlet-name>
+		<servlet-class>com.nebula.test.TestServlet</servlet-class>
+		<init-param>
+			<param-name>name</param-name>
+			<param-value>zhangsan</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>testServlet</servlet-name>
+		<url-pattern>/test</url-pattern>
+	</servlet-mapping>
+
+	<!-- <context-param> <param-name>user</param-name> <param-value>zhangsan</param-value> 
+		</context-param> <context-param> <param-name>password</param-name> <param-value>123456</param-value> 
+		</context-param> -->
+
+	<!-- 用于单点退出 -->
+	<listener>
+		<listener-class>org.jasig.cas.client.session.SingleSignOutHttpSessionListener</listener-class>
+	</listener>
+	<filter>
+		<filter-name>CAS Single Sign Out Filter</filter-name>
+		<filter-class>org.jasig.cas.client.session.SingleSignOutFilter</filter-class>
+	</filter>
+	<!-- 用于单点登录 -->
+	<filter>
+		<filter-name>CAS Filter</filter-name>
+		<filter-class>edu.yale.its.tp.cas.client.filter.CASFilter</filter-class>
+		<!-- 下面两个为验证地址，即cas server的地址，如果使用https验证，地址为https://hostname:8443字样，这里可以用域名也可以用IP -->
+		<init-param>
+			<param-name>edu.yale.its.tp.cas.client.filter.loginUrl</param-name>
+			<param-value>http://121.43.151.74:8090/cas-server/login</param-value>
+		</init-param>
+		<init-param>
+			<param-name>edu.yale.its.tp.cas.client.filter.validateUrl</param-name>
+			<param-value>http://121.43.151.74:8090/cas-server/serviceValidate</param-value>
+		</init-param>
+		<!-- 本工程的URL，被拦截的地址 -->
+		<init-param>
+			<param-name>edu.yale.its.tp.cas.client.filter.serverName</param-name>
+			<param-value>localhost:8080</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>CAS Single Sign Out Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>CAS Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>
