@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="test" method="post">
-	user:<input type="text" name="user" />
-	password:<input type="password" name="password" />
-	<input type="submit" value="submit" />
-</form>
+this is top page
 </body>
 </html>
