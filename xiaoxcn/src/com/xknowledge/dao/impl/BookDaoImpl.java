@@ -21,7 +21,7 @@ public class BookDaoImpl implements BookDao {
 	@Override
 	public Pager<Book> queryBookPage(Pager<Book> pager) throws SQLException {
 		QueryRunner qr = new QueryRunner(DataSourceUtil.getDataSource());
-		String sql = "select * from c_book where 1=1 ";
+		String sql = "select * from kno_book where 1=1 ";
 		List<String> param = new ArrayList<String>();
 		Book paramBook = pager.getList().get(0);
 		if(!StringUtilx.isBlank(paramBook.getAuthor())){
@@ -55,8 +55,8 @@ public class BookDaoImpl implements BookDao {
 	public Book queryBookSingle(String id) throws SQLException {
 		QueryRunner qr = new QueryRunner(DataSourceUtil.getDataSource());
 		Book book = new Book();
-		book = qr.query("select * from c_book where id = ? ", new BeanHandler<>(Book.class), id);
-		BookPlus bookPlus = qr.query("select * from c_book_plus where book_id = ? ", new BeanHandler<>(BookPlus.class), id);
+		book = qr.query("select * from kno_book where id = ? ", new BeanHandler<>(Book.class), id);
+		BookPlus bookPlus = qr.query("select * from kno_book_resource where book_id = ? ", new BeanHandler<>(BookPlus.class), id);
 		book.setBookPlus(bookPlus);
 		return book;
 	}
@@ -65,7 +65,7 @@ public class BookDaoImpl implements BookDao {
 	public Boolean addBookInfo(Book book) throws SQLException {
 		QueryRunner qr = new QueryRunner();
 		Object[] paramBook = new Object[]{book.getId(),book.getName(),book.getAuthor(),book.getEnName(),book.getPublishDate(),book.getType()};
-		qr.update(DataSourceUtil.getConnection(),"insert into c_book (id,name,author,en_name,publish_date,type) values (?,?,?,?,?,?)",paramBook);
+		qr.update(DataSourceUtil.getConnection(),"insert into kno_book (id,name,author,en_name,publish_date,type) values (?,?,?,?,?,?)",paramBook);
 		return true;
 	}
 	
@@ -75,7 +75,7 @@ public class BookDaoImpl implements BookDao {
 		BookPlus bookPlus = book.getBookPlus();
 		Object[] paramBookPlus =
 				new Object[]{IDUtilx.getUUID(),book.getId(),bookPlus.getUrlBaike(),bookPlus.getUrlDouban(),bookPlus.getUrlYunpan(),bookPlus.getDownloadPwd()};
-		qr.update(DataSourceUtil.getConnection(),"insert into c_book_plus (id,book_id,url_baike,url_douban,url_yunpan,download_pwd) values (?,?,?,?,?,?)",paramBookPlus);
+		qr.update(DataSourceUtil.getConnection(),"insert into kno_book_resource (id,book_id,url_baike,url_douban,url_yunpan,download_pwd) values (?,?,?,?,?,?)",paramBookPlus);
 		return true;
 	}
 
@@ -83,7 +83,7 @@ public class BookDaoImpl implements BookDao {
 	public Boolean editBookInfo(Book book) throws SQLException {
 		QueryRunner qr = new QueryRunner();
 		Object[] paramBook = new Object[]{book.getName(),book.getAuthor(),book.getEnName(),book.getPublishDate(),book.getType(),book.getId()};
-		qr.update(DataSourceUtil.getConnection(),"update c_book set name = ?,author=?,en_name=?,publish_date=?,type=? where id = ? ",paramBook);
+		qr.update(DataSourceUtil.getConnection(),"update kno_book set name = ?,author=?,en_name=?,publish_date=?,type=? where id = ? ",paramBook);
 		return true;
 	}
 	
@@ -93,21 +93,21 @@ public class BookDaoImpl implements BookDao {
 		BookPlus bookPlus = book.getBookPlus();
 		Object[] paramBookPlus =
 				new Object[]{bookPlus.getUrlBaike(),bookPlus.getUrlDouban(),bookPlus.getUrlYunpan(),bookPlus.getDownloadPwd(),bookPlus.getId()};
-		qr.update(DataSourceUtil.getConnection(),"update c_book_plus set url_baike=?,url_douban=?,url_yunpan=?,download_pwd=? where  id=? ",paramBookPlus);
+		qr.update(DataSourceUtil.getConnection(),"update kno_book_resource set url_baike=?,url_douban=?,url_yunpan=?,download_pwd=? where  id=? ",paramBookPlus);
 		return true;
 	}
 
 	@Override
 	public Boolean delBookInfo(String id) throws SQLException {
 		QueryRunner qr = new QueryRunner();
-		qr.update(DataSourceUtil.getConnection(),"delete from c_book where id=? ", id);
+		qr.update(DataSourceUtil.getConnection(),"delete from kno_book where id=? ", id);
 		return true;
 	}
 	
 	@Override
 	public Boolean delBookPlusInfo(String id) throws SQLException {
 		QueryRunner qr = new QueryRunner(DataSourceUtil.getDataSource());
-		qr.update(DataSourceUtil.getConnection(),"delete from c_book_plus where book_id=? ", id);
+		qr.update(DataSourceUtil.getConnection(),"delete from kno_book_resource where book_id=? ", id);
 		return true;
 	}
 

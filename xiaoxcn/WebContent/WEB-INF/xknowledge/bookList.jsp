@@ -9,24 +9,27 @@
 <link type="text/css" rel="stylesheet" href="${xpath }/css/xknowledge/bookList.css" />
 </head>
 <body>
-<div>
+<div class="contaier">
 <form>
 	<table class="search-table">
 		<caption>查询</caption>
 		<tr>
-			<td>名称</td>
-			<td></td>
+			<td>书名:<input type="text" name="name" /></td>
+			<td>作者:<input type="text" name="author" /></td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
+			<td>出版日期:<input type="text" name="startTime" />-<input type="text" name="endTime" /></td>
+			<td>类型:<input type="text" name="type" /></td>
 		</tr>
 	</table>
+	<div class="search-btn">
+		<input type="reset" name="resetForm" value="重置" />&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="submit" name="submitForm" value="查询" />
+	</div>
 </form>
+	<table class="search-table">
+		<caption>查询</caption>
+	</table>
 </div>
 <table>
 </table>
