@@ -7,7 +7,7 @@ public class Pager<E> {
 	private Integer countNum;
 	private Integer currentPage = 1;
 	private Integer pageSize = 10;
-	private Integer totalPage;
+	private Integer totalPage = 1;
 	
 	private List<E> list;
 	

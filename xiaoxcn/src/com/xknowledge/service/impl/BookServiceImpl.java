@@ -1,6 +1,7 @@
 package com.xknowledge.service.impl;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.common.utils.DataSourceUtil;
 import com.common.utils.IDUtilx;
@@ -87,6 +88,18 @@ public class BookServiceImpl implements BookService {
 			DataSourceUtil.release();
 		}
 		return true;
+	}
+
+	@Override
+	public List<Object> searchByName(String name) {
+		BookDao bookDao = new BookDaoImpl();
+		try {
+			return bookDao.searchByName(name);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

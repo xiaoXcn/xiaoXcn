@@ -16,7 +16,7 @@ import com.xknowledge.service.impl.BookServiceImpl;
 /**
  * Servlet implementation class EditSaveBookInfo
  */
-public class EditSaveBookInfo extends HttpServlet {
+public class EditSaveBookInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**

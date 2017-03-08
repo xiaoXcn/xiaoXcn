@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ColumnListHandler;
 
 import com.common.utils.DataSourceUtil;
 import com.common.utils.IDUtilx;
@@ -45,7 +46,8 @@ public class BookDaoImpl implements BookDao {
 			sql += " and publish_date < ? ";
 			param.add(pager.getEndTime());
 		}
-		sql += "limit "+pager.getCurrentPage()*pager.getPageSize()+","+pager.getPageSize();
+		sql += "limit "+(pager.getCurrentPage()-1)*pager.getPageSize()+","+pager.getPageSize();
+		System.out.println(sql);
 		List<Book> reList = qr.query(sql, new BeanListHandler<Book>(Book.class), param.toArray());
 		pager.setList(reList);
 		return pager;
@@ -106,9 +108,15 @@ public class BookDaoImpl implements BookDao {
 	
 	@Override
 	public Boolean delBookPlusInfo(String id) throws SQLException {
-		QueryRunner qr = new QueryRunner(DataSourceUtil.getDataSource());
+		QueryRunner qr = new QueryRunner();
 		qr.update(DataSourceUtil.getConnection(),"delete from kno_book_resource where book_id=? ", id);
 		return true;
+	}
+
+	@Override
+	public List<Object> searchByName(String name) throws SQLException {
+		QueryRunner qr = new QueryRunner(DataSourceUtil.getDataSource());
+		return qr.query("select name from kno_book where name like ? ",new ColumnListHandler(), "%"+name+"%");
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.xknowledge.service;
 
+import java.util.List;
+
 import com.xknowledge.domain.Book;
 import com.xknowledge.domain.Pager;
 
@@ -14,5 +16,7 @@ public interface BookService {
 	Boolean editBookInfo(Book book);
 
 	Boolean delBookInfo(String id);
+
+	List<Object> searchByName(String name);
 
 }

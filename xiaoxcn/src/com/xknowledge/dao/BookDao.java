@@ -1,6 +1,7 @@
 package com.xknowledge.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.xknowledge.domain.Book;
 import com.xknowledge.domain.Pager;
@@ -22,6 +23,8 @@ public interface BookDao {
 	public Boolean delBookInfo(String id) throws SQLException;
 
 	public Boolean delBookPlusInfo(String id) throws SQLException;
+
+	public List<Object> searchByName(String name) throws SQLException;
 
 	
 

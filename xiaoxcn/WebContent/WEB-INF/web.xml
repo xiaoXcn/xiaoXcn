@@ -47,7 +47,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>queryBookSigleServlet</servlet-name>
-    <url-pattern>/queryBookSigleServlet</url-pattern>
+    <url-pattern>/xknowledge/queryBookSigleServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>addSaveBookInfoServlet</servlet-name>
@@ -55,27 +55,23 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>addSaveBookInfoServlet</servlet-name>
-    <url-pattern>/addSaveBookInfoServlet</url-pattern>
+    <url-pattern>/xknowledge/addSaveBookInfoServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
-    <display-name>addBookSkipServlet</display-name>
     <servlet-name>addBookSkipServlet</servlet-name>
     <servlet-class>com.xknowledge.servlet.AddBookSkipServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>addBookSkipServlet</servlet-name>
-    <url-pattern>/addBookSkipServlet</url-pattern>
+    <url-pattern>/xknowledge/addBookSkipServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
-    <display-name>editSaveBookInfo</display-name>
-    <servlet-name>editSaveBookInfo</servlet-name>
-    <servlet-class>com.xknowledge.servlet.EditSaveBookInfo</servlet-class>
+    <servlet-name>editSaveBookInfoServlet</servlet-name>
+    <servlet-class>com.xknowledge.servlet.EditSaveBookInfoServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>editSaveBookInfo</servlet-name>
-    <url-pattern>/editSaveBookInfo</url-pattern>
+    <servlet-name>editSaveBookInfoServlet</servlet-name>
+    <url-pattern>/xknowledge/editSaveBookInfoServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -85,6 +81,16 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>delBookInfoServlet</servlet-name>
-    <url-pattern>/delBookInfoServlet</url-pattern>
+    <url-pattern>/xknowledge/delBookInfoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>searchByNameServlet</display-name>
+    <servlet-name>searchByNameServlet</servlet-name>
+    <servlet-class>com.xknowledge.servlet.SearchByNameServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>searchByNameServlet</servlet-name>
+    <url-pattern>/xknowledge/searchByNameServlet</url-pattern>
   </servlet-mapping>
 </web-app>

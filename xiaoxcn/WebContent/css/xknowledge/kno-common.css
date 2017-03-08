@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+.container{
+	width:90%;
+	margin:10px auto;
+}
+.subnav{
+	text-align:left;
+	background-color:gray;
+}
