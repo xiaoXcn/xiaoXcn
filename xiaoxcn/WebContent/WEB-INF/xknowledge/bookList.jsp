@@ -68,7 +68,7 @@
 </div>
 <script type="text/javascript">
 	window.onload=function(){
-		var addBtnEle = document.getElementById("addBtnEle");
+		var addBtnEle = document.getElementById("addBtn");
 		addBtnEle.onclick=function(){
 			location.href=webRootPath+"/xknowledge/addBookSkipServlet";
 		}

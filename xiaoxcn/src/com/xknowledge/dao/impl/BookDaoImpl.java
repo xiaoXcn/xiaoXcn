@@ -22,7 +22,7 @@ public class BookDaoImpl implements BookDao {
 	@Override
 	public Pager<Book> queryBookPage(Pager<Book> pager) throws SQLException {
 		QueryRunner qr = new QueryRunner(DataSourceUtil.getDataSource());
-		String sql = "select * from kno_book where 1=1 ";
+		String sql = "select id,name,author,en_name as enName,publish_date as publishDate,type from kno_book where 1=1 ";
 		List<String> param = new ArrayList<String>();
 		Book paramBook = pager.getList().get(0);
 		if(!StringUtilx.isBlank(paramBook.getAuthor())){
@@ -57,8 +57,8 @@ public class BookDaoImpl implements BookDao {
 	public Book queryBookSingle(String id) throws SQLException {
 		QueryRunner qr = new QueryRunner(DataSourceUtil.getDataSource());
 		Book book = new Book();
-		book = qr.query("select * from kno_book where id = ? ", new BeanHandler<>(Book.class), id);
-		BookPlus bookPlus = qr.query("select * from kno_book_resource where book_id = ? ", new BeanHandler<>(BookPlus.class), id);
+		book = qr.query("select id,name,author,en_name as enName,publish_date as publishDate,type from kno_book where id = ? ", new BeanHandler<>(Book.class), id);
+		BookPlus bookPlus = qr.query("select id,book_id as bookId,url_baike as urlBaike,url_douban as urlDouban,url_yunpan as urlYunpan,download_pwd as downloadPwd from kno_book_resource where book_id = ? ", new BeanHandler<>(BookPlus.class), id);
 		book.setBookPlus(bookPlus);
 		return book;
 	}

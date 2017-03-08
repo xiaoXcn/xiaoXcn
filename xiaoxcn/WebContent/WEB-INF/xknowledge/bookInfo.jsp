@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/common/taglib.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,12 +29,12 @@
 <div class="subnav">资源信息</div>
 <table>
 	<tr>
-		<td>百科:${book.urlBaike }</td>
-		<td>豆瓣:${book.urlDouban }</td>
+		<td>百科:${book.bookPlus.urlBaike }</td>
+		<td>豆瓣:${book.bookPlus.urlDouban }</td>
 	</tr>
 	<tr>
-		<td>云盘:${book.urlYunpan }</td>
-		<td>密码:${book.downloadPwd }</td>
+		<td>云盘:${book.bookPlus.urlYunpan }</td>
+		<td>密码:${book.bookPlus.downloadPwd }</td>
 	</tr>
 </table>
 </div>

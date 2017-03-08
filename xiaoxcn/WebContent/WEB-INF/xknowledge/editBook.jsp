@@ -16,21 +16,22 @@
 <input type="hidden" id="id" name="id" value="${book.id }" />
 <table>
 	<tr>
-		<td>书名:<input type="text" name="name" value="${book.name }" /></td>
-		<td>作者:<input type="text" name="author" value="${book.author }" /></td>
+		<td>书名：<input type="text" name="name" value="${book.name }" /></td>
+		<td>作者：<input type="text" name="author" value="${book.author }" /></td>
 	</tr>
 	<tr>
-		<td>书英文名:<input type="text" name="enName" value="${book.enName }" /></td>
-		<td>出版时间:<input type="text" name="publishDate" value="${book.publishDate }" /></td>
+		<td>书英文名：<input type="text" name="enName" value="${book.enName }" /></td>
+		<td>出版时间：<input type="text" name="publishDate" value="${book.publishDate }" /></td>
 	</tr>
 	<tr>
 		<td>
-			<select name="type">
-				<option value="Java">Java</option>
-				<option value="WEB前端" <c:if test="${book.type }=='WEB前端' "> selected="selected" </c:if>>WEB前端</option>
-				<option value="Linux" <c:if test="${book.type }=='Linux' "> selected="selected" </c:if>>Linux</option>
-				<option value="C#" <c:if test="${book.type }=='C#' "> selected="selected" </c:if>>C#</option>
-				<option value="其他" <c:if test="${book.type }=='其他' "> selected="selected" </c:if>>其他</option>
+			类型：<select name="type">
+				<option value="">==请选择类型==</option>
+				<option value="Java" <c:if test="${book.type eq Java } "> selected="selected" </c:if> >Java</option>
+				<option value="WEB前端" <c:if test="${book.type eq'WEB前端' } "> selected="selected" </c:if> >WEB前端</option>
+				<option value="Linux" <c:if test="${book.type eq'Linux' } "> selected="selected" </c:if> >Linux</option>
+				<option value="C#" <c:if test="${book.type eq 'C#' } "> selected="selected" </c:if> >C#</option>
+				<option value="其他" <c:if test="${book.type eq'其他' } "> selected="selected" </c:if> >其他</option>
 			</select>
 		</td>
 		<td></td>
@@ -39,12 +40,12 @@
 <div class="subnav">资源信息</div>
 <table>
 	<tr>
-		<td>百科:<input type="text" name="urlBaike" value="${book.urlBaike }" /></td>
-		<td>豆瓣:<input type="text" name="urlDouban" value="${book.urlDouban }" /></td>
+		<td>百科:<input type="text" name="urlBaike" value="${book.bookPlus.urlBaike }" /></td>
+		<td>豆瓣:<input type="text" name="urlDouban" value="${book.bookPlus.urlDouban }" /></td>
 	</tr>
 	<tr>
-		<td>云盘:<input type="text" name="urlYunpan" value="${book.urlYunpan }" /></td>
-		<td>密码:<input type="text" name="downloadPwd" value="${book.downloadPwd }" /></td>
+		<td>云盘:<input type="text" name="urlYunpan" value="${book.bookPlus.urlYunpan }" /></td>
+		<td>密码:<input type="text" name="downloadPwd" value="${book.bookPlus.downloadPwd }" /></td>
 	</tr>
 </table>
 

@@ -29,19 +29,22 @@ public class QueryBookPageServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		Pager<Book> pager = new Pager<Book>();
-		String currentPage = request.getParameter("currentPage");
-		pager.setCurrentPage(StringUtilx.isBlank(currentPage)?1:Integer.parseInt(currentPage));
+		String operateType = request.getParameter("operateType");
 		Book book = new Book();
-		book.setAuthor(request.getParameter("author"));
-		book.setName(request.getParameter("name"));
-		book.setType(request.getParameter("type"));
 		List<Book> list = new ArrayList<Book>();
 		list.add(book);
 		pager.setList(list);
-		String startTime = request.getParameter("startTime");
-		String endTime = request.getParameter("endTime");
-		pager.setStartTime(startTime);
-		pager.setEndTime(endTime);
+		if(StringUtilx.isBlank(operateType)||!operateType.equalsIgnoreCase("skip")){
+			String currentPage = request.getParameter("currentPage");
+			pager.setCurrentPage(StringUtilx.isBlank(currentPage)?1:Integer.parseInt(currentPage));
+			book.setAuthor(request.getParameter("author"));
+			book.setName(request.getParameter("name"));
+			book.setType(request.getParameter("type"));
+			String startTime = request.getParameter("startTime");
+			String endTime = request.getParameter("endTime");
+			pager.setStartTime(startTime);
+			pager.setEndTime(endTime);
+		}
 		BookService bookService = new BookServiceImpl();
 		Pager<Book> returnPager = bookService.queryBookPage(pager);
 		request.setAttribute("pager", returnPager);

@@ -38,7 +38,7 @@ public class AddSaveBookInfoServlet extends HttpServlet {
 		book.setBookPlus(bookPlus);
 		BookService bookService = new BookServiceImpl();
 		bookService.addBookInfo(book);
-		request.getRequestDispatcher("xknowledge/QueryBookPageServlet").forward(request, response);
+		request.getRequestDispatcher("/xknowledge/queryBookPageServlet?operateType=skip").forward(request, response);
 	}
 
 	/**

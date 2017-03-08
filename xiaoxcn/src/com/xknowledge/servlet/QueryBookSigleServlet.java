@@ -29,9 +29,9 @@ public class QueryBookSigleServlet extends HttpServlet {
 		Book book = bookService.queryBookSingle(id);
 		request.setAttribute("book", book);
 		if("query".equalsIgnoreCase(operType)){
-			request.getRequestDispatcher("/xknowledge/bookInfo.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/xknowledge/bookInfo.jsp").forward(request, response);
 		}else if("edit".equalsIgnoreCase(operType)){
-			request.getRequestDispatcher("/xknowledge/editBook.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/xknowledge/editBook.jsp").forward(request, response);
 		}
 		
 	}
