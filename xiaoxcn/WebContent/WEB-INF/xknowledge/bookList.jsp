@@ -21,8 +21,16 @@
 			<td>作者:<input type="text" name="author" /></td>
 		</tr>
 		<tr>
-			<td>出版日期:<input type="text" name="startTime" />-<input type="text" name="endTime" /></td>
-			<td>类型:<input type="text" name="type" /></td>
+			<td>出版日期:<input type="text" id="startTime" name="startTime" onClick="WdatePicker({readOnly:true,dateFmt:'yyyy',maxDate:'#F{$dp.$D(\'endTime\')||\'%y\'}'})"/>
+-<input type="text" id="endTime" name="endTime" onClick="WdatePicker({readOnly:true,dateFmt:'yyyy',maxDate:'2020',minDate:'#F{$dp.$D(\'startTime\')}'})"/>
+			<td>类型:
+				<select name="type">
+					<option value="">==请选择类型==</option>
+					<c:forEach items="${applicationScope.bookClassifyList }" var="bookClassify">
+					<option value="${bookClassify.classifyCode }">${bookClassify.classifyName }</option>
+				</c:forEach>
+				</select>
+			</td>
 		</tr>
 	</table>
 	<div class="search-btn">
@@ -52,7 +60,11 @@
 			<td>${book.name }</td>
 			<td>${book.author }</td>
 			<td>${book.publishDate }</td>
-			<td>${book.type }</td>
+			<td>
+				<c:forEach items="${applicationScope.bookClassifyList }" var="bookClassify">
+					<c:if test="${bookClassify.classifyCode == book.type }">${bookClassify.classifyName }</c:if>
+				</c:forEach>
+			</td>
 			<td>
 				<a href="${xpath }/xknowledge/queryBookSigleServlet?id=${book.id }&operType=query">详细</a>
 				<a href="${xpath }/xknowledge/queryBookSigleServlet?id=${book.id }&operType=edit">修改</a>
@@ -66,6 +78,11 @@
 <div class="page-div">
 <a id="lastPage" href="#">上一页</a>&nbsp;第${pager.currentPage }页/共${pager.totalPage }页&nbsp;<a id="nextPage" href="#">下一页</a>
 </div>
+
+<div id="tipsDiv">
+
+</div>
+<script type="text/javascript" src="${xpath }/js/common.js" ></script>
 <script type="text/javascript">
 	window.onload=function(){
 		var addBtnEle = document.getElementById("addBtn");
@@ -113,6 +130,28 @@
 		var searchByNameEle = document.getElementById("searchByName");
 		searchByNameEle.onkeypress = function(){
 			var name = searchByNameEle.value;
+			var xmlHttpRequest = getXMLHttpRequest();
+			xmlHttpRequest.onreadystatechange=function(){
+				if(xmlHttpRequest.readystate == 4){
+					if(xmlHttpRequest.status ==200){
+						console.log(responseText);
+						var tipsArr = null;
+						if(responseText!=null){
+							tipsArr = responseText.split(",");
+						}
+						if(tipsArr!=null&&tipsArr.length>0){
+							var divStr = "";
+							for(var i=0;i<tipsArr.length;i++){
+								divStr += "<div>"+tipsArr[i]+"</div>";
+							}
+							tipsDiv.innerHTML(divStr);
+						}
+					}
+				}
+			}
+			xmlHttpRequest.open("GET",webRootPath+"/xknowledge/searchByNameServlet?name="+name);
+			xmlHttpRequest.send(null);
+			
 			
 		}
 	}

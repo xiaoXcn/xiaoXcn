@@ -20,17 +20,16 @@
 	</tr>
 	<tr>
 		<td>书英文名：<input type="text" name="enName" /></td>
-		<td>出版时间：<input type="text" name="publishDate" /></td>
+		<td>出版时间：<input type="text" name="publishDate" onClick="WdatePicker({readOnly:true,dateFmt:'yyyy',maxDate:'%y'})"/></td>
 	</tr>
 	<tr>
 		<td>
-			类型：<select name="type">
-				<option value="">==请选择类型==</option>
-				<option value="Java">Java</option>
-				<option value="WEB前端">WEB前端</option>
-				<option value="Linux">Linux</option>
-				<option value="C#">C#</option>
-				<option value="其他">其他</option>
+			类型：
+			<select name="type">
+					<option value="">==请选择类型==</option>
+					<c:forEach items="${applicationScope.bookClassifyList }" var="bookClassify">
+					<option value="${bookClassify.classifyCode }">${bookClassify.classifyName }</option>
+					</c:forEach>
 			</select>
 		</td>
 		<td></td>

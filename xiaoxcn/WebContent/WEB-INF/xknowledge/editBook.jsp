@@ -15,24 +15,24 @@
 <form action="/xknowledge/editSaveBookInfoServlet" method="POST">
 <input type="hidden" id="id" name="id" value="${book.id }" />
 <table>
+<c:if test=""></c:if>
 	<tr>
 		<td>书名：<input type="text" name="name" value="${book.name }" /></td>
 		<td>作者：<input type="text" name="author" value="${book.author }" /></td>
 	</tr>
 	<tr>
 		<td>书英文名：<input type="text" name="enName" value="${book.enName }" /></td>
-		<td>出版时间：<input type="text" name="publishDate" value="${book.publishDate }" /></td>
+		<td>出版时间：<input type="text" name="publishDate" value="${book.publishDate }" onClick="WdatePicker({readOnly:true,dateFmt:'yyyy',maxDate:'%y'})"/></td>
 	</tr>
 	<tr>
 		<td>
-			类型：<select name="type">
-				<option value="">==请选择类型==</option>
-				<option value="Java" <c:if test="${book.type eq Java } "> selected="selected" </c:if> >Java</option>
-				<option value="WEB前端" <c:if test="${book.type eq'WEB前端' } "> selected="selected" </c:if> >WEB前端</option>
-				<option value="Linux" <c:if test="${book.type eq'Linux' } "> selected="selected" </c:if> >Linux</option>
-				<option value="C#" <c:if test="${book.type eq 'C#' } "> selected="selected" </c:if> >C#</option>
-				<option value="其他" <c:if test="${book.type eq'其他' } "> selected="selected" </c:if> >其他</option>
-			</select>
+			类型：
+				<select name="type">
+					<option value="">==请选择类型==</option>
+					<c:forEach items="${applicationScope.bookClassifyList }" var="bookClassify">
+					<option value="${bookClassify.classifyCode }" <c:if test="${book.type == bookClassify.classifyCode}">selected="selected"</c:if>>${bookClassify.classifyName }</option>
+					</c:forEach>
+				</select>
 		</td>
 		<td></td>
 	</tr>

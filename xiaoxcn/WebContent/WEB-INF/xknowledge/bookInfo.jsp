@@ -22,7 +22,11 @@
 		<td>出版时间:${book.publishDate }</td>
 	</tr>
 	<tr>
-		<td>类型:${book.type }</td>
+		<td>类型:
+				<c:forEach items="${applicationScope.bookClassifyList }" var="bookClassify">
+					<c:if test="${bookClassify.classifyCode == book.type }">${bookClassify.classifyName }</c:if>
+				</c:forEach>
+		</td>
 		<td></td>
 	</tr>
 </table>

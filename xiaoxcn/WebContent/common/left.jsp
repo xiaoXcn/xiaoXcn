@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.xiaoxcn.domain.*,java.util.*;"%>
 <%@ include file="taglib.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -18,20 +18,50 @@
 		<!--
 
 		d = new dTree('d');
-		d.add(0,-1,'菜单');
-		d.add(1,0,'知识','');
-		d.add(101,1,'书籍资源管理',webRootPath+'/xknowledge/queryBookPageServlet','书籍资源管理','main');
-		d.add(2,0,'Node 2','example01.html');
-		d.add(4,0,'Node 3','example01.html');
-		d.add(5,3,'Node 1.1.1','example01.html');
-		d.add(6,5,'Node 1.1.1.1','example01.html');
-		d.add(7,0,'Node 4','example01.html');
-		d.add(8,1,'Node 1.2','example01.html');
-		d.add(9,0,'My Pictures','example01.html','Pictures I\'ve taken over the years','','','img/imgfolder.gif');
-		d.add(10,9,'The trip to Iceland','example01.html','Pictures of Gullfoss and Geysir');
-		d.add(11,9,'Mom\'s birthday','example01.html');
-		d.add(12,0,'Recycle Bin','example01.html','','','img/trash.gif');
-
+		<% 
+		List<NodeEntity> nodeList = (List<NodeEntity>)application.getAttribute("nodeList");
+		if(nodeList!=null&&nodeList.size()>0){
+			
+			for(NodeEntity nodeEntity:nodeList){
+				String outPrint = "d.add(";
+				if(nodeEntity.getNodeId()!=null&&nodeEntity.getNodeId()!=""){
+					outPrint += ("\""+nodeEntity.getNodeId()+"\"");
+				}
+				outPrint += ",";
+				if(nodeEntity.getParentNodeId()!=null&&nodeEntity.getParentNodeId()!=""){
+					outPrint += ("\""+nodeEntity.getParentNodeId()+"\"");
+				}else{
+					outPrint += null;
+				}
+				outPrint += ",";
+				if(nodeEntity.getNodeName()!=null&&nodeEntity.getNodeName()!=""){
+					outPrint += ("\""+nodeEntity.getNodeName()+"\"");
+				}else{
+					outPrint += null;
+				}
+				outPrint += ",";
+				if(nodeEntity.getSkipUrl()!=null&&nodeEntity.getSkipUrl()!=""){
+					outPrint += (("\""+request.getContextPath()+nodeEntity.getSkipUrl()+"\""));
+				}else{
+					outPrint += null;
+				}
+				outPrint += ",";
+				if(nodeEntity.getTitle()!=null&&nodeEntity.getTitle()!=""){
+					outPrint += ("\""+nodeEntity.getTitle()+"\"");
+				}else{
+					outPrint += null;
+				}
+				outPrint += ",";
+				if(nodeEntity.getTarget()!=null&&nodeEntity.getTarget()!=""){
+					outPrint += ("\""+nodeEntity.getTarget()+"\"");
+				}else{
+					outPrint += null;
+				}
+				outPrint += ");";
+				out.println(outPrint);
+			}
+		}
+		%>
 		document.write(d);
 
 		//-->
