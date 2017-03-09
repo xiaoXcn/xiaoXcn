@@ -11,23 +11,23 @@
 </head>
 <body>
 <div class="container">
-<form id="searchForm" name="searchForm" action="/xknowledge/queryBookPageServlet" method="POST">
+<form id="searchForm" name="searchForm" action="${xpath }/xknowledge/queryBookPageServlet" method="POST">
 	<div class="subnav">查询</div>
 	<input type="hidden" name="currentPage" value="${pager.currentPage }" />
 	<input type="hidden" name="totalPage" value="${pager.totalPage }" />
 	<table class="search-table">
 		<tr>
-			<td>书名:<input type="text" id="searchByName" name="name" /></td>
-			<td>作者:<input type="text" name="author" /></td>
+			<td>书名:<input type="text" id="searchByName" name="name" value="${param.name }"/></td>
+			<td>作者:<input type="text" name="author" value="${param.author }"/></td>
 		</tr>
 		<tr>
-			<td>出版日期:<input type="text" id="startTime" name="startTime" onClick="WdatePicker({readOnly:true,dateFmt:'yyyy',maxDate:'#F{$dp.$D(\'endTime\')||\'%y\'}'})"/>
--<input type="text" id="endTime" name="endTime" onClick="WdatePicker({readOnly:true,dateFmt:'yyyy',maxDate:'2020',minDate:'#F{$dp.$D(\'startTime\')}'})"/>
+			<td>出版日期:<input type="text" id="startTime" value="${param.startTime }" name="startTime" onClick="WdatePicker({readOnly:true,dateFmt:'yyyy',maxDate:'#F{$dp.$D(\'endTime\')||\'%y\'}'})"/>
+-<input type="text" id="endTime" name="endTime" value="${param.endTime }" onClick="WdatePicker({readOnly:true,dateFmt:'yyyy',maxDate:'2020',minDate:'#F{$dp.$D(\'startTime\')}'})"/>
 			<td>类型:
 				<select name="type">
 					<option value="">==请选择类型==</option>
 					<c:forEach items="${applicationScope.bookClassifyList }" var="bookClassify">
-					<option value="${bookClassify.classifyCode }">${bookClassify.classifyName }</option>
+					<option value="${bookClassify.classifyCode }" <c:if test="${bookClassify.classifyCode == param.type }">selected="selected"</c:if>>${bookClassify.classifyName }</option>
 				</c:forEach>
 				</select>
 			</td>
@@ -79,10 +79,9 @@
 <a id="lastPage" href="#">上一页</a>&nbsp;第${pager.currentPage }页/共${pager.totalPage }页&nbsp;<a id="nextPage" href="#">下一页</a>
 </div>
 
-<div id="tipsDiv">
-
+<div id="tipsDiv" class="tipsDiv">
 </div>
-<script type="text/javascript" src="${xpath }/js/common.js" ></script>
+<script type="text/javascript" src="${xpath }/common/js/common.js" ></script>
 <script type="text/javascript">
 	window.onload=function(){
 		var addBtnEle = document.getElementById("addBtn");
@@ -128,32 +127,29 @@
 		}
 		
 		var searchByNameEle = document.getElementById("searchByName");
+		var tipsDivEle = document.getElementById("tipsDiv");
 		searchByNameEle.onkeypress = function(){
 			var name = searchByNameEle.value;
 			var xmlHttpRequest = getXMLHttpRequest();
-			xmlHttpRequest.onreadystatechange=function(){
-				if(xmlHttpRequest.readystate == 4){
-					if(xmlHttpRequest.status ==200){
-						console.log(responseText);
+		xmlHttpRequest.onreadystatechange=function(){
+				if(xmlHttpRequest.readyState == 4 && xmlHttpRequest.status ==200){
 						var tipsArr = null;
-						if(responseText!=null){
-							tipsArr = responseText.split(",");
+						if(xmlHttpRequest.responseText!=null){
+							tipsArr = xmlHttpRequest.responseText.split(",");
 						}
 						if(tipsArr!=null&&tipsArr.length>0){
 							var divStr = "";
 							for(var i=0;i<tipsArr.length;i++){
 								divStr += "<div>"+tipsArr[i]+"</div>";
 							}
-							tipsDiv.innerHTML(divStr);
+							tipsDivEle.innerHTML=divStr;
 						}
-					}
 				}
 			}
-			xmlHttpRequest.open("GET",webRootPath+"/xknowledge/searchByNameServlet?name="+name);
-			xmlHttpRequest.send(null);
-			
-			
-		}
+		
+		xmlHttpRequest.open("GET",webRootPath+"/xknowledge/searchByNameServlet?name="+name+"&time="+new Date().getTime().toString(),true);
+		xmlHttpRequest.send();
+		}	
 	}
 </script>
 </body>

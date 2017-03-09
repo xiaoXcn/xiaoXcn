@@ -23,11 +23,11 @@
 }
 .tipsDiv{
 	blackground-color:white;
-	width:50px;
-	height:30px;
+	width:123px;
 	position:absolute;
-	top:15%;
-	left:20%;
+	top:13.5%;
+	left:10.2%;
+	border:1px solid;
 }
 .page-div{
 	margin-top:10px;

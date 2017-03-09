@@ -1,7 +1,7 @@
 
 
 function getXMLHttpRequest(){
-	XMLHttpRequest xmlHttpRequest = null;
+	var xmlHttpRequest = null;
 	if (window.XMLHttpRequest)
 	  {// code for IE7+, Firefox, Chrome, Opera, Safari
 		xmlHttpRequest=new XMLHttpRequest();

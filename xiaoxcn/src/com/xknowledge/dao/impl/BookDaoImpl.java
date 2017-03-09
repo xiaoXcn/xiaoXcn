@@ -30,7 +30,7 @@ public class BookDaoImpl implements BookDao {
 			param.add("%"+paramBook.getAuthor()+"%");
 		}
 		if(!StringUtilx.isBlank(paramBook.getName())){
-			sql += " and name like ? or en_name like ?";
+			sql += " and name like ? or en_name like ? ";
 			param.add("%"+paramBook.getName()+"%");
 			param.add("%"+paramBook.getName()+"%");
 		}
@@ -39,11 +39,11 @@ public class BookDaoImpl implements BookDao {
 			param.add(paramBook.getType());
 		}
 		if(!StringUtilx.isBlank(pager.getStartTime())){
-			sql += " and publish_date > ? ";
+			sql += " and publish_date >= ? ";
 			param.add(pager.getStartTime());
 		}
 		if(!StringUtilx.isBlank(pager.getEndTime())){
-			sql += " and publish_date < ? ";
+			sql += " and publish_date <= ? ";
 			param.add(pager.getEndTime());
 		}
 		sql += "limit "+(pager.getCurrentPage()-1)*pager.getPageSize()+","+pager.getPageSize();
