@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>xiaoxcn</display-name>
-  
   <listener>
-  	<listener-class>com.xiaoxcn.Listener.InitSystemListener</listener-class>
+    <listener-class>com.xiaoxcn.Listener.InitSystemListener</listener-class>
   </listener>
-  
   <servlet>
     <servlet-name>handlerServlet</servlet-name>
     <servlet-class>com.nebula.servlet.HandlerServlet</servlet-class>
@@ -97,5 +95,15 @@
   <servlet-mapping>
     <servlet-name>searchByNameServlet</servlet-name>
     <url-pattern>/xknowledge/searchByNameServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>loginServelt</display-name>
+    <servlet-name>loginServelt</servlet-name>
+    <servlet-class>com.xiaoxcn.servlet.LoginServelt</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>loginServelt</servlet-name>
+    <url-pattern>/loginServelt</url-pattern>
   </servlet-mapping>
 </web-app>

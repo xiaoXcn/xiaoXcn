@@ -8,6 +8,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ColumnListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.common.utils.DataSourceUtil;
 import com.common.utils.IDUtilx;
@@ -46,6 +47,10 @@ public class BookDaoImpl implements BookDao {
 			sql += " and publish_date <= ? ";
 			param.add(pager.getEndTime());
 		}
+		//查询总记录数 并设置总页数
+		Integer countNum = (Integer)qr.query(sql, new ScalarHandler(1), param.toArray());
+		pager.setCountNum(countNum);
+		pager.setTotalPage((int)Math.ceil(countNum*1.0/pager.getPageSize()));
 		sql += "limit "+(pager.getCurrentPage()-1)*pager.getPageSize()+","+pager.getPageSize();
 		System.out.println(sql);
 		List<Book> reList = qr.query(sql, new BeanListHandler<Book>(Book.class), param.toArray());
