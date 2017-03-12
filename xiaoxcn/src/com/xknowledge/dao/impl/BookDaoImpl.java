@@ -48,8 +48,8 @@ public class BookDaoImpl implements BookDao {
 			param.add(pager.getEndTime());
 		}
 		//查询总记录数 并设置总页数
-		Integer countNum = (Integer)qr.query(sql, new ScalarHandler(1), param.toArray());
-		pager.setCountNum(countNum);
+		Long countNum = (Long)qr.query("select count(1) from ("+sql+") temp ", new ScalarHandler(1), param.toArray());
+		pager.setCountNum(Integer.parseInt(countNum+""));
 		pager.setTotalPage((int)Math.ceil(countNum*1.0/pager.getPageSize()));
 		sql += "limit "+(pager.getCurrentPage()-1)*pager.getPageSize()+","+pager.getPageSize();
 		System.out.println(sql);
