@@ -1,8 +1,24 @@
 @CHARSET "UTF-8";
+body{overflow:hidden;}
 .logindiv{
-	margin-left:30%;
-	margin-top:30%;
-	width:40%;
-	height:40%;
-	align:center;
+	margin:100px auto;
+	width:400px;
+	text-align:center;
+	border:1px solid gray;
+}
+.logintitle{
+	font-size:30px;
+	text-align:center;
+	background-color:gray;
+}
+table{
+	margin-top:20px;
+}
+.left-td{
+	text-align:right;
+	width:45%;
+	height:50px;
+}
+.right-td{
+	text-align:left;
 }
