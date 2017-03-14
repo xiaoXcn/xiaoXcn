@@ -1,0 +1,19 @@
+#story-content ul li{
+	list-style: none;
+}
+#story-content ul li a{
+	font-size:16px;
+	color:#000000;
+	text-decoration: none;
+}
+p {
+	text-indent: 2em;
+	display: none;
+	font-size:12px
+}
+.displayNone{
+	display:none;
+}
+.displayBlock{
+	display:block;
+}

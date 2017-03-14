@@ -1,0 +1,10 @@
+#author-content p {
+	text-indent:2em;
+	float:left;
+	width:600px;
+	padding:10px;
+}
+#author-content img {
+	float:left;
+	width:260px;
+}
