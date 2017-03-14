@@ -1,42 +1,25 @@
-package com.xknowledge.servlet;
+package com.xiaoxcn.servlet;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.xknowledge.service.BookService;
-import com.xknowledge.service.impl.BookServiceImpl;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class SearchByNameServlet
+ * Servlet implementation class LogoutServlet
  */
-public class SearchByNameServlet extends HttpServlet {
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
-		String name = request.getParameter("name");
-		BookService bookService = new BookServiceImpl();
-		List<Object> nameList = bookService.searchByName(name);
-		String retStr = "";
-		if(nameList!=null){
-			for(int i=0;i<nameList.size();i++){
-				retStr += nameList.get(i);
-				if(i!=nameList.size()-1){
-					retStr += ",";
-				}
-			}
-		}
-		response.getWriter().write(retStr);
-		
+		HttpSession session = request.getSession();
+		session.removeAttribute("userInfo");
+		response.sendRedirect("/index.jsp");
 	}
 
 	/**

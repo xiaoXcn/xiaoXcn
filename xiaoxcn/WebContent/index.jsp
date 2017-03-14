@@ -16,8 +16,9 @@
 	
 	</div>
 </div>
+<div>
+</div>
 
-<input type="text" id="startTime" name="startTime" onClick="WdatePicker({readOnly:true,dateFmt:'yyyy',maxDate:'%y'})"/>
--<input type="text" id="endTime" name="endTime" onClick="WdatePicker({readOnly:true,dateFmt:'yyyy',maxDate:'2020',minDate:'#F{$dp.$D(\'startTime\')}'})"/>
+
 </body>
 </html>

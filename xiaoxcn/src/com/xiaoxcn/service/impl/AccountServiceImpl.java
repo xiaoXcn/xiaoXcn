@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.common.utils.DataSourceUtil;
 import com.xiaoxcn.dao.AccountDao;
 import com.xiaoxcn.dao.impl.AccountDaoImpl;
 import com.xiaoxcn.domain.AccountEntity;
@@ -18,7 +19,7 @@ public class AccountServiceImpl implements AccountService {
 		UserEntity userEntity = new UserEntity();
 		try {
 			AccountEntity retAccountEntity = accountDao.doLogin(accountEntity);
-			List list = new ArrayList();
+			List<AccountEntity> list = new ArrayList<AccountEntity>();
 			list.add(retAccountEntity);
 			userEntity.setAccountList(list);
 			return userEntity;
@@ -27,6 +28,26 @@ public class AccountServiceImpl implements AccountService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean doRegister(UserEntity userEntity, AccountEntity accountEntity) {
+		Boolean flag = true;
+		try {
+			DataSourceUtil.startTransaction();
+			AccountDao accountDao = new AccountDaoImpl();
+			Boolean f1 = accountDao.addUserInfo(userEntity);
+			Boolean f2 = accountDao.addAccountInfo(accountEntity);
+		} catch (SQLException e) {
+			flag=false;
+			DataSourceUtil.rollBack();
+			e.printStackTrace();
+		}finally{
+			DataSourceUtil.commit();
+			DataSourceUtil.release();
+		}
+		
+		return flag;
 	}
 
 }

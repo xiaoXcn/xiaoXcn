@@ -37,6 +37,10 @@ public class QueryBookPageServlet extends HttpServlet {
 		if(StringUtilx.isBlank(operateType)||!operateType.equalsIgnoreCase("skip")){
 			String currentPage = request.getParameter("currentPage");
 			pager.setCurrentPage(StringUtilx.isBlank(currentPage)?1:Integer.parseInt(currentPage));
+			String pageSize = request.getParameter("pageSize");
+			if(!StringUtilx.isBlank(pageSize)){
+				pager.setPageSize(Integer.parseInt(pageSize));
+			}
 			book.setAuthor(request.getParameter("author"));
 			book.setName(request.getParameter("name"));
 			book.setType(request.getParameter("type"));

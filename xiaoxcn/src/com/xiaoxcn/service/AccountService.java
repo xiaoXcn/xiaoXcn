@@ -7,4 +7,6 @@ public interface AccountService {
 
 	public UserEntity doLogin(AccountEntity accountEntity);
 
+	public Boolean doRegister(UserEntity userEntity, AccountEntity accountEntity);
+
 }

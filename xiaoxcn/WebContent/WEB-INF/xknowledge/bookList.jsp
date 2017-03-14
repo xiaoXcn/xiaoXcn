@@ -13,8 +13,8 @@
 <div class="container">
 <form id="searchForm" name="searchForm" action="${xpath }/xknowledge/queryBookPageServlet" method="POST">
 	<div class="subnav">查询</div>
-	<input type="hidden" name="currentPage" value="${pager.currentPage }" />
-	<input type="hidden" name="totalPage" value="${pager.totalPage }" />
+	<input type="hidden" id="currentPage" name="currentPage" value="${pager.currentPage }" />
+	<input type="hidden" id="totalPage" name="totalPage" value="${pager.totalPage }" />
 	<table class="search-table">
 		<tr>
 			<td>书名:<input type="text" id="searchByName" name="name" value="${param.name }"/></td>
@@ -120,7 +120,7 @@
 			var currentPage = currentPageEle.value;
 			var totalPage = totalPageEle.value;
 			if(currentPage<totalPage){
-				currentPageEle.value = currentPage+1;
+				currentPageEle.value = parseInt(currentPage)+1;
 			}
 			var searchFormEle = document.getElementById("searchForm");
 			searchFormEle.submit();
@@ -128,8 +128,11 @@
 		
 		var searchByNameEle = document.getElementById("searchByName");
 		var tipsDivEle = document.getElementById("tipsDiv");
-		searchByNameEle.onkeypress = function(){
+		searchByNameEle.onkeyup = function(){
 			var name = searchByNameEle.value;
+			if(name==null||name==""){
+				return false;
+			}
 			var xmlHttpRequest = getXMLHttpRequest();
 		xmlHttpRequest.onreadystatechange=function(){
 				if(xmlHttpRequest.readyState == 4 && xmlHttpRequest.status ==200){
@@ -140,7 +143,7 @@
 						if(tipsArr!=null&&tipsArr.length>0){
 							var divStr = "";
 							for(var i=0;i<tipsArr.length;i++){
-								divStr += "<div>"+tipsArr[i]+"</div>";
+								divStr += "<div onclick='clickTip(this);' onmouseover='mouseoverTip(this);' onmouseout='mouseoutTip(this);'>"+tipsArr[i]+"</div>";
 							}
 							tipsDivEle.innerHTML=divStr;
 						}
@@ -150,6 +153,19 @@
 		xmlHttpRequest.open("GET",webRootPath+"/xknowledge/searchByNameServlet?name="+name+"&time="+new Date().getTime().toString(),true);
 		xmlHttpRequest.send();
 		}	
+	}
+	function clickTip(ele){
+		var tipsDivEle = document.getElementById("tipsDiv");
+		tipsDivEle.innerHTML="";
+		var searchByNameEle = document.getElementById("searchByName");
+		searchByNameEle.value=ele.innerText;
+		
+	}
+	function mouseoverTip(ele){
+		ele.style.backgroundColor="#808080";
+	}
+	function mouseoutTip(ele){
+		ele.style.backgroundColor="";
 	}
 </script>
 </body>

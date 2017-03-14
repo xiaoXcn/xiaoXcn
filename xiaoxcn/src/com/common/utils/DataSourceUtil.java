@@ -62,6 +62,7 @@ public class DataSourceUtil {
 			Connection conn = tl.get();
 			if(conn==null){
 				conn = getConnection();
+				tl.set(conn);
 			}
 			conn.setAutoCommit(false);
 		} catch (SQLException e) {
@@ -75,6 +76,7 @@ public class DataSourceUtil {
 			Connection conn = tl.get();
 			if(conn==null){
 				conn = getConnection();
+				tl.set(conn);
 			}
 			conn.rollback();
 		} catch (SQLException e) {
@@ -88,6 +90,7 @@ public class DataSourceUtil {
 			Connection conn = tl.get();
 			if(conn==null){
 				conn = getConnection();
+				tl.set(conn);
 			}
 			conn.commit();
 		} catch (SQLException e) {

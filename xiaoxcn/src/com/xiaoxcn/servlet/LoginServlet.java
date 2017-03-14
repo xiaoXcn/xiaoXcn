@@ -7,7 +7,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.common.utils.MD5Utilx;
 import com.common.utils.StringUtilx;
 import com.xiaoxcn.domain.AccountEntity;
 import com.xiaoxcn.domain.UserEntity;
@@ -25,13 +27,16 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String account = request.getParameter("account");
-		String password = request.getParameter("password");
+		String sourcePassword = request.getParameter("password");
+		String password = MD5Utilx.toMD5(sourcePassword);
 		AccountEntity accountEntity = new AccountEntity();
 		accountEntity.setAccount(account);
 		accountEntity.setPassword(password);
 		AccountService accountService = new AccountServiceImpl();
 		UserEntity userEntity = accountService.doLogin(accountEntity);
 		if(userEntity!=null){
+			HttpSession session = request.getSession();
+			session.setAttribute("userInfo", userEntity);
 			String autoLogin = request.getParameter("autoLogin");
 			Cookie cookie = new Cookie("accountInfo", account+"&"+password);
 			cookie.setPath("/");
@@ -41,9 +46,10 @@ public class LoginServlet extends HttpServlet {
 				cookie.setMaxAge(0);
 			}
 			response.addCookie(cookie);
-			request.getRequestDispatcher("/indexServlet").forward(request, response);
+			response.sendRedirect("/index.jsp");
+			//request.getRequestDispatcher("/index.jsp").forward(request, response);
 		}else{
-			request.setAttribute("errorMsg", "用户名或密码错误!");
+			request.setAttribute("msg", "用户名或密码错误!");
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 		
