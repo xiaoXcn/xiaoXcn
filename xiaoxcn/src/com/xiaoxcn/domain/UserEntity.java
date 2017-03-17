@@ -7,8 +7,9 @@ public class UserEntity {
 	private String id;
 	private String name;
 	private String gender;
-	private String age;
+	private String birthday;
 	private String idCardNo;
+	private String email;
 	private String phoneNumber;
 	private String qqNumber;
 	private String weixin;
@@ -39,12 +40,12 @@ public class UserEntity {
 		this.gender = gender;
 	}
 
-	public String getAge() {
-		return age;
+	public String getBirthday() {
+		return birthday;
 	}
 
-	public void setAge(String age) {
-		this.age = age;
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 
 	public String getIdCardNo() {
@@ -53,6 +54,14 @@ public class UserEntity {
 
 	public void setIdCardNo(String idCardNo) {
 		this.idCardNo = idCardNo;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPhoneNumber() {

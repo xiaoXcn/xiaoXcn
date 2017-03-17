@@ -21,9 +21,9 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public Boolean addUserInfo(UserEntity userEntity) throws SQLException {
-		String sql = "insert into x_user (id,name,gender,age) values (?,?,?,?)";
+		String sql = "insert into x_user (id,name,gender,birthday,phone_number,email) values (?,?,?,?,?,?)";
 		QueryRunner qr = new QueryRunner();
-		qr.update(DataSourceUtil.getConnection(), sql, userEntity.getId(),userEntity.getName(),userEntity.getGender(),userEntity.getAge());
+		qr.update(DataSourceUtil.getConnection(), sql, userEntity.getId(),userEntity.getName(),userEntity.getGender(),userEntity.getBirthday(),userEntity.getPhoneNumber(),userEntity.getEmail());
 		return true;
 	}
 
