@@ -1,6 +1,7 @@
 package com.xiaoxcn.filter;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.Map;
 
 import javax.servlet.Filter;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.common.utils.ActionEntity;
+import com.common.utils.ResultEntity;
+import com.common.utils.StringUtilx;
 import com.common.utils.StrutsConfigUtilx;
 
 /**
@@ -45,8 +48,33 @@ public class StrutsConfigFilter implements Filter {
 		String servletPath = request.getServletPath();
 		int lastIndex = servletPath.lastIndexOf(".action");
 		if(lastIndex>0){
-		String name = servletPath.substring(1, lastIndex);
-		chain.doFilter(request, response);
+			String name = servletPath.substring(1, lastIndex);
+			ActionEntity actionEntity = actionMap.get(name);
+			if(null!=actionEntity){
+				String clazzQualifiedName = actionEntity.getClazz();
+				String methodName = actionEntity.getMethod();
+				Map<String,ResultEntity> resultMap = actionEntity.getResultEntity();
+				try {
+					Class clazz =Class.forName(clazzQualifiedName);
+					Object obj = clazz.newInstance();
+					Method method = clazz.getMethod(methodName);
+					String returnStr = (String) method.invoke(obj);
+					if(resultMap!=null){
+						ResultEntity resultEntity = resultMap.get(returnStr);
+						if(resultEntity!=null){
+							String resultUrl = resultEntity.getResultContext();
+							if(!StringUtilx.isBlank(resultUrl)){
+								request.getRequestDispatcher(resultUrl).forward(request, response);
+							}
+						}
+					}
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			chain.doFilter(request, response);
 		}
 	}
 

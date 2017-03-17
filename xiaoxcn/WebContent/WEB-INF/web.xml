@@ -132,4 +132,44 @@
     <filter-name>strutsConfigFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>addToCart</display-name>
+    <servlet-name>addToCart</servlet-name>
+    <servlet-class>com.xknowledge.servlet.AddToCart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addToCart</servlet-name>
+    <url-pattern>/knowledge/addToCart</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>buildServlet</display-name>
+    <servlet-name>buildServlet</servlet-name>
+    <servlet-class>com.xknowledge.servlet.BuildServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>buildServlet</servlet-name>
+    <url-pattern>/xknowledge/buildServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>confirmOrderServlet</display-name>
+    <servlet-name>confirmOrderServlet</servlet-name>
+    <servlet-class>com.xknowledge.servlet.ConfirmOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>confirmOrderServlet</servlet-name>
+    <url-pattern>/xknowledge/confirmOrderServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>completeOrderServlet</display-name>
+    <servlet-name>completeOrderServlet</servlet-name>
+    <servlet-class>com.xknowledge.servlet.CompleteOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>completeOrderServlet</servlet-name>
+    <url-pattern>/xknowledge/completeOrderServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
