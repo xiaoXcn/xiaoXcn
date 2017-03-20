@@ -12,7 +12,7 @@
 <body>
 <div class="container">
 <div class="subnav">基本信息</div>
-<form action="${xpath }/xknowledge/addSaveBookInfoServlet" method="POST">
+<form action="${xpath }/xknowledge/addSaveBookInfoServlet" enctype="multipart/form-data" method="POST">
 <table>
 	<tr>
 		<td>书名：<input type="text" name="name" /></td>
@@ -32,7 +32,7 @@
 					</c:forEach>
 			</select>
 		</td>
-		<td></td>
+		<td>封面：<input type="file" name="cover"/></td>
 	</tr>
 </table>
 <div class="subnav">资源信息</div>

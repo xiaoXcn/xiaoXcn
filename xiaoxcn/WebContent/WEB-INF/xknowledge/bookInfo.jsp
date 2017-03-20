@@ -14,7 +14,10 @@
 <div class="subnav">基本信息</div>
 <table>
 	<tr>
+		<td rowspan="2"><img src="${book.cover }" /><a href="${xpath }/xknowledge/downloadCoverServlet?cover=${book.cover }">下载</a></td>
 		<td>书名:${book.name }</td>
+	</tr>
+	<tr>
 		<td>作者:${book.author }</td>
 	</tr>
 	<tr>
@@ -42,5 +45,9 @@
 	</tr>
 </table>
 </div>
+<script type="text/javascript">
+window.onload = function(){
+}
+</script>
 </body>
 </html>
