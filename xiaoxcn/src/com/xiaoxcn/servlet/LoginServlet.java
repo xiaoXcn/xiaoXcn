@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 		accountEntity.setPassword(password);
 		AccountService accountService = new AccountServiceImpl();
 		UserEntity userEntity = accountService.doLogin(accountEntity);
-		if(userEntity!=null){
+		if(userEntity!=null&& !StringUtilx.isBlank(userEntity.getId())){
 			HttpSession session = request.getSession();
 			session.setAttribute("userInfo", userEntity);
 			String autoLogin = request.getParameter("autoLogin");
@@ -46,10 +46,10 @@ public class LoginServlet extends HttpServlet {
 				cookie.setMaxAge(0);
 			}
 			response.addCookie(cookie);
-			response.sendRedirect("/index.jsp");
+			response.sendRedirect(request.getContextPath()+"/knowledge/index.jsp");
 			//request.getRequestDispatcher("/index.jsp").forward(request, response);
 		}else{
-			request.setAttribute("msg", "用户名或密码错误!");
+			request.setAttribute("msg", "<font color='red'>用户名或密码错误!</font>");
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 		

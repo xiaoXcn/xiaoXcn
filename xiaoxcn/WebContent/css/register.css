@@ -1,8 +1,27 @@
 @CHARSET "UTF-8";
+body{overflow:hidden;}
 .registerdiv{
-	margin-left:30%;
-	margin-top:30%;
-	width:40%;
-	height:40%;
-	align:center;
+	margin:100px auto;
+	width:900px;
+	text-align:center;
+	background-color:#F5FFFA;
+}
+.registertitle{
+	font-size:30px;
+	text-align:center;
+	background-color:#E0FFFF;
+}
+table{
+	margin-top:20px;
+}
+.left-td{
+	text-align:right;
+	width:300px;
+	height:50px;
+}
+.right-td{
+	text-align:left;
+}
+span{
+	font-size:9;
 }

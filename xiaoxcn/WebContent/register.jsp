@@ -5,25 +5,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>sign up</title>
-<link rel="stylesheet" type="text/css" href="${xpath }/css/login.css" />
+<title>用户注册</title>
+<link rel="stylesheet" type="text/css" href="${xpath }/css/register.css" />
 </head>
 <body>
-<div class="logindiv">
-	<div class="logintitle">sign up</div>
-<form action="/xiaoxcn/registerServlet" method="post">
+<div class="registerdiv">
+	<div class="registertitle">用户注册</div>
+<form action="${xpath }/xiaoxcn/registerServlet" method="post">
 	<table>
 		<tr>
 			<td class="left-td">帐号:</td>
-			<td class="right-td"><input type="text" id="account" name="account" /><span id="accountMsg"></span></td>
+			<td class="right-td"><input type="text" id="account" name="account" />&nbsp;&nbsp;<span id="accountMsg"></span></td>
 		</tr>
 		<tr>
 			<td class="left-td">密码:</td>
-			<td class="right-td"><input type="password" id="password" name="password" /><span id="passwordMsg"></span></td>
+			<td class="right-td"><input type="password" id="password" name="password" />&nbsp;&nbsp;<span id="passwordMsg"></span></td>
 		</tr>
 		<tr>
 			<td class="left-td">确认密码:</td>
-			<td class="right-td"><input type="password" id="passwordRep" name="passwordRep" /><span id="passwordRepMsg"></span></td>
+			<td class="right-td"><input type="password" id="passwordRep" name="passwordRep" />&nbsp;&nbsp;<span id="passwordRepMsg"></span></td>
 		</tr>
 		<tr>
 			<td class="left-td">姓名:</td>
@@ -51,7 +51,7 @@
 	</form>
 	<span>已有帐号？<a href="${xpath }/login.jsp">点击登录</a></span>
 </div>
-
-<script type="text/javascript" src="${xpath }/" ></script>
+<script type="text/javascript" src="${xpath }/common/js/commonValidate.js" ></script>
+<script type="text/javascript" src="${xpath }/js/register.js" ></script>
 </body>
 </html>

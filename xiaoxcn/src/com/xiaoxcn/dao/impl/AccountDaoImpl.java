@@ -15,7 +15,7 @@ public class AccountDaoImpl implements AccountDao {
 	@Override
 	public AccountEntity doLogin(AccountEntity accountEntity) throws SQLException {
 		QueryRunner qr = new QueryRunner(DataSourceUtil.getDataSource());
-		AccountEntity retAccountEntity = qr.query("select * from x_account where account = ? and password = ? limit 1 ", new BeanHandler<AccountEntity>(AccountEntity.class), accountEntity.getAccount(),accountEntity.getPassword());
+		AccountEntity retAccountEntity = qr.query("select id,user_id userId,account,password,account_type accountType,app_code appCode,status from x_account where account = ? and password = ? limit 1 ", new BeanHandler<AccountEntity>(AccountEntity.class), accountEntity.getAccount(),accountEntity.getPassword());
 		return retAccountEntity;
 	}
 
@@ -29,7 +29,7 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public Boolean addAccountInfo(AccountEntity accountEntity) throws SQLException {
-		String sql = "insert into x_user (id,user_id,account,password,account_type,app_code,status) values (?,?,?,?,?,?,?)";
+		String sql = "insert into x_account (id,user_id,account,password,account_type,app_code,status) values (?,?,?,?,?,?,?)";
 		QueryRunner qr = new QueryRunner();
 		qr.update(DataSourceUtil.getConnection(), sql, accountEntity.getId(),accountEntity.getUserId(),accountEntity.getAccount(),accountEntity.getPassword(),accountEntity.getAccountType(),accountEntity.getAppCode(),accountEntity.getStatus());
 		return true;

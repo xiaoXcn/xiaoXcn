@@ -1,8 +1,11 @@
 window.onload=function(){
 	
-	var submitBtnEle = document.getElementById("submitBtnEle");
-	submitBtnEle.onClick=function(){
-		return accountValidate()&&passwordValidate();
+	var submitBtnEle = document.getElementById("submitBtn");
+	submitBtnEle.onclick=function(){
+		if(accountValidate()&&passwordValidate()){
+			var loginFormEle = document.getElementById("loginForm");
+			loginFormEle.submit();
+		}
 	}
 		
 	
@@ -11,8 +14,8 @@ window.onload=function(){
 //帐号校验
 function accountValidate(){
 	var accountEle = document.getElementById("account");
-	var tipMsgEle = document.getElemnetById("tipMsg");
-	if(isBlank(accountEle.value)){
+	var tipMsgEle = document.getElementById("tipMsg");
+	if(!isNotBlank(accountEle.value)){
 		tipMsgEle.innerHTML="<font color='red'>请输入帐号!</font>";
 		return false;
 	}else{
@@ -23,8 +26,8 @@ function accountValidate(){
 //密码校验
 function passwordValidate(){
 	var passwordEle = document.getElementById("password");
-	var tipMsgEle = document.getElemnetById("tipMsg");
-	if(isBlank(passwordEle.value)){
+	var tipMsgEle = document.getElementById("tipMsg");
+	if(!isNotBlank(passwordEle.value)){
 		tipMsgEle.innerHTML="<font color='red'>请输入密码!</font>";
 		return false;
 	}else{
