@@ -172,4 +172,14 @@
     <servlet-name>completeOrderServlet</servlet-name>
     <url-pattern>/xknowledge/completeOrderServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>downloadCoverServlet</display-name>
+    <servlet-name>downloadCoverServlet</servlet-name>
+    <servlet-class>com.xknowledge.servlet.DownloadCoverServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>downloadCoverServlet</servlet-name>
+    <url-pattern>/xknowledge/downloadCoverServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

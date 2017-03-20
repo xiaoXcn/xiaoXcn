@@ -62,7 +62,7 @@ public class BookDaoImpl implements BookDao {
 	public Book queryBookSingle(String id) throws SQLException {
 		QueryRunner qr = new QueryRunner(DataSourceUtil.getDataSource());
 		Book book = new Book();
-		book = qr.query("select id,name,author,en_name as enName,publish_date as publishDate,type from kno_book where id = ? ", new BeanHandler<>(Book.class), id);
+		book = qr.query("select id,name,author,en_name as enName,publish_date as publishDate,type,cover from kno_book where id = ? ", new BeanHandler<>(Book.class), id);
 		BookPlus bookPlus = qr.query("select id,book_id as bookId,url_baike as urlBaike,url_douban as urlDouban,url_yunpan as urlYunpan,download_pwd as downloadPwd from kno_book_resource where book_id = ? ", new BeanHandler<>(BookPlus.class), id);
 		book.setBookPlus(bookPlus);
 		return book;
@@ -71,8 +71,8 @@ public class BookDaoImpl implements BookDao {
 	@Override
 	public Boolean addBookInfo(Book book) throws SQLException {
 		QueryRunner qr = new QueryRunner();
-		Object[] paramBook = new Object[]{book.getId(),book.getName(),book.getAuthor(),book.getEnName(),book.getPublishDate(),book.getType()};
-		qr.update(DataSourceUtil.getConnection(),"insert into kno_book (id,name,author,en_name,publish_date,type) values (?,?,?,?,?,?)",paramBook);
+		Object[] paramBook = new Object[]{book.getId(),book.getName(),book.getAuthor(),book.getEnName(),book.getPublishDate(),book.getType(),book.getCover()};
+		qr.update(DataSourceUtil.getConnection(),"insert into kno_book (id,name,author,en_name,publish_date,type,cover) values (?,?,?,?,?,?,?)",paramBook);
 		return true;
 	}
 	
@@ -89,8 +89,8 @@ public class BookDaoImpl implements BookDao {
 	@Override
 	public Boolean editBookInfo(Book book) throws SQLException {
 		QueryRunner qr = new QueryRunner();
-		Object[] paramBook = new Object[]{book.getName(),book.getAuthor(),book.getEnName(),book.getPublishDate(),book.getType(),book.getId()};
-		qr.update(DataSourceUtil.getConnection(),"update kno_book set name = ?,author=?,en_name=?,publish_date=?,type=? where id = ? ",paramBook);
+		Object[] paramBook = new Object[]{book.getName(),book.getAuthor(),book.getEnName(),book.getPublishDate(),book.getType(),book.getCover(),book.getId()};
+		qr.update(DataSourceUtil.getConnection(),"update kno_book set name = ?,author=?,en_name=?,publish_date=?,type=?,cover=? where id = ? ",paramBook);
 		return true;
 	}
 	

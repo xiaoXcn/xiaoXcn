@@ -8,6 +8,7 @@ public class Book {
 	private String enName;  //书英文名
 	private String publishDate;  //出版日期
 	private String type;  //图书类型
+	private String cover;  //封面
 	
 	private BookPlus bookPlus;  //书籍额外信息
 
@@ -65,6 +66,14 @@ public class Book {
 
 	public void setBookPlus(BookPlus bookPlus) {
 		this.bookPlus = bookPlus;
+	}
+
+	public String getCover() {
+		return cover;
+	}
+
+	public void setCover(String cover) {
+		this.cover = cover;
 	}
 
 	
