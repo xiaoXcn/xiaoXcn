@@ -5,8 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.bottom-text{text-align:center;}
+</style>
 </head>
 <body>
-this is buttom page
+<div class="bottom-text">xiaoXcn for all system<br />copyleft 2017-9999</div>
 </body>
 </html>

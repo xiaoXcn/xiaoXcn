@@ -37,7 +37,7 @@ public class AddSaveBookInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//修改代码支持封面上传
-		String savePath =this.getServletContext().getRealPath("upload/"+Calendar.YEAR);
+		String savePath =request.getContextPath()+"/upload/"+Calendar.getInstance().get(Calendar.YEAR);
 		File file = new File(savePath);
 		if(!(file.exists()&&file.isDirectory())){
 			file.mkdirs();
@@ -69,7 +69,7 @@ public class AddSaveBookInfoServlet extends HttpServlet {
 						}
 						fileName = fileName.substring(fileName.lastIndexOf("\\")+1);
 						InputStream is = item.getInputStream();
-						saveFile = savePath+"\\"+IDUtilx.getUUID()+"_"+fileName;
+						saveFile = savePath+File.separator+IDUtilx.getUUID()+"_"+fileName;
 						System.out.println(saveFile);
 						FileOutputStream os = new FileOutputStream(saveFile);
 						byte buffer[] = new byte[1024];

@@ -8,9 +8,9 @@
 <title>Insert title here</title>
 
 </head>
-<frameset rows="10%,85%,5%">
+<frameset rows="17%,76%,7%">
 	<frame src="${xpath}/common/top.jsp" name="top">
-	<frameset cols="20%,80%">
+	<frameset cols="15%,85%">
 		<frame src="${xpath}/common/left.jsp" name="left">
 		<frame src="${xpath}/common/main.jsp" name="main">
 	</frameset>

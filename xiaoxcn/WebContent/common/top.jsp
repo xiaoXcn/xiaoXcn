@@ -5,8 +5,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.bar{background-color:#000000;color:#FFFFFF;line-height:30px;}
+.logo{margin-left:20px;float:left;}
+.logo-text{margin-left:90%;}
+.page-title{font-size:45px;text-align:center;}
+</style>
 </head>
 <body>
-this is top page
+<div class="bar">
+	<div class="logo">xiaoXcn for all system</div>
+	<div class="logo-text">欢迎您!${sessionScope.name }</div>
+</div>
+<div class="page-title">xiaoXcn后台管理系统</div>
 </body>
 </html>

@@ -14,7 +14,7 @@
 <div class="subnav">基本信息</div>
 <table>
 	<tr>
-		<td rowspan="2"><img src="${book.cover }" /><a href="${xpath }/xknowledge/downloadCoverServlet?cover=${book.cover }">下载</a></td>
+		<td rowspan="4"><img src="${book.cover }" /><br/><a href="${xpath }/xknowledge/downloadCoverServlet?cover=${book.cover }">下载</a></td>
 		<td>书名:${book.name }</td>
 	</tr>
 	<tr>
@@ -22,6 +22,8 @@
 	</tr>
 	<tr>
 		<td>书英文名:${book.enName }</td>
+	</tr>
+	<tr>
 		<td>出版时间:${book.publishDate }</td>
 	</tr>
 	<tr>
@@ -30,7 +32,6 @@
 					<c:if test="${bookClassify.classifyCode == book.type }">${bookClassify.classifyName }</c:if>
 				</c:forEach>
 		</td>
-		<td></td>
 	</tr>
 </table>
 <div class="subnav">资源信息</div>
