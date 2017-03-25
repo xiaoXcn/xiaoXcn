@@ -22,7 +22,7 @@ public class StringUtilx {
 	}
 	
 	public static Boolean isBlank(String str){
-		if(str==null||str.trim()==""){
+		if(str==null||str.trim()==""||str.trim().length()==0){
 			return true;
 		}else{
 			return false;

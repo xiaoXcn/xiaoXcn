@@ -1,49 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>xiaoxcn</display-name>
-    <!-- <filter>
-    <filter-name>strutsConfigFilter</filter-name>
-    <filter-class>com.xiaoxcn.filter.StrutsConfigFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>strutsConfigFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping> -->
   <listener>
     <listener-class>com.xiaoxcn.listener.InitSystemListener</listener-class>
   </listener>
-  <servlet>
-    <servlet-name>handlerServlet</servlet-name>
-    <servlet-class>com.nebula.servlet.HandlerServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>handlerServlet</servlet-name>
-    <url-pattern>*.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>testServlet</servlet-name>
-    <servlet-class>com.nebula.test.TestServlet</servlet-class>
-    <init-param>
-      <param-name>name</param-name>
-      <param-value>zhangsan</param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>testServlet</servlet-name>
-    <url-pattern>/test</url-pattern>
-  </servlet-mapping>
+  
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+  
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <servlet-name>indexServlet</servlet-name>
-    <servlet-class>com.xiaoxcn.servlet.IndexServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>indexServlet</servlet-name>
-    <url-pattern>/indexServlet</url-pattern>
-  </servlet-mapping>
+ 
   <servlet>
     <servlet-name>queryBookPageServlet</servlet-name>
     <servlet-class>com.xknowledge.servlet.QueryBookPageServlet</servlet-class>
@@ -103,34 +78,6 @@
   <servlet-mapping>
     <servlet-name>searchByNameServlet</servlet-name>
     <url-pattern>/xknowledge/searchByNameServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>loginServelt</servlet-name>
-    <servlet-class>com.xiaoxcn.servlet.LoginServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>loginServelt</servlet-name>
-    <url-pattern>/xiaoxcn/loginServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>registerServlet</display-name>
-    <servlet-name>registerServlet</servlet-name>
-    <servlet-class>com.xiaoxcn.servlet.RegisterServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>registerServlet</servlet-name>
-    <url-pattern>/xiaoxcn/registerServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>logoutServlet</display-name>
-    <servlet-name>logoutServlet</servlet-name>
-    <servlet-class>com.xiaoxcn.servlet.LogoutServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>logoutServlet</servlet-name>
-    <url-pattern>/xiaoxcn/logoutServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

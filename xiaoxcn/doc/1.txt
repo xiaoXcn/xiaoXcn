@@ -1,0 +1,7 @@
+/xiaoxcn/IndexAction_index   返回后台管理首页/common/index.jsp
+/xiaoxcn/AccountAction_*
+/xiaoxcn/AccountAction_*
+/xiaoxcn/AccountAction_*
+/xiaoxcn/AccountAction_*
+/xiaoxcn/AccountAction_*
+/xiaoxcn/AccountAction_*

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <package name="xknowledge" namespace="/xknowledge" extends="struts-default">
+
+        <default-action-ref name="index" />
+
+        <global-results>
+            <result name="error">/WEB-INF/jsp/error.jsp</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
+
+        <action name="BookAction_*" class="com.xknowledge.action.BookAction" method="{1}">
+            <result name="viewIndex" type="dispatcher">/common/index.jsp</result>
+        </action>
+        
+       
+    </package>
+
+
+    <!-- Add packages here -->
+
+</struts>
